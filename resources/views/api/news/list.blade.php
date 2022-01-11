@@ -42,22 +42,24 @@
     <div class="bg-light p-4 rounded" style="padding-top: 0px !important; padding-bottom: 0px !important; background: transparent;">
 
         @foreach($resources as $resource)
-            <div class="row">
-                <div class="resource-title">
-                    <h2><a href="{{route('resources.show.out', ['resource' => $resource->id])}}">{{$resource->name}}</h2>
-                </div>
-                @foreach($resource->categories as $category)
-                    <div class="news-title ">
-                        <h2 style="direction: @if($resource->lng == 'en') ltr @else rtl @endif"><a href="{{route('categories.show.out', ['category' => $category->id])}}">{{$category->name}}</h2>
+            @if(count($resource->categories))
+                <div class="row">
+                    <div class="resource-title">
+                        <h2><a href="{{route('resources.show.out', ['resource' => $resource->id])}}">{{$resource->name}}</h2>
                     </div>
-                    @foreach(collect($category->news)->sortByDesc('id')->take(3) as $news)
-                        <div class="news-title">
-                            <h6 style="direction: @if($resource->lng == 'en') ltr @else rtl @endif" ><a href="{{route('news.show.out', ['news' => $news->id])}}">{!!  $news->title !!}</a></h6>
-                            <p style="direction: @if($resource->lng == 'en') ltr @else rtl @endif"> {!! substr(strip_tags($news->body), 0, 50) !!}... </p>
+                    @foreach($resource->categories as $category)
+                        <div class="news-title ">
+                            <h2 style="direction: @if($resource->lng == 'en') ltr @else rtl @endif"><a href="{{route('categories.show.out', ['category' => $category->id])}}">{{$category->name}}</h2>
                         </div>
+                        @foreach(collect($category->news)->sortByDesc('id')->take(3) as $news)
+                            <div class="news-title">
+                                <h6 style="direction: @if($resource->lng == 'en') ltr @else rtl @endif" ><a href="{{route('news.show.out', ['news' => $news->id])}}">{!!  $news->title !!}</a></h6>
+                                <p style="direction: @if($resource->lng == 'en') ltr @else rtl @endif"> {!! substr(strip_tags($news->body), 0, 50) !!}... </p>
+                            </div>
+                        @endforeach
                     @endforeach
-                @endforeach
-            </div>
+                </div>
+            @endif
         @endforeach
     </div>
 @endsection

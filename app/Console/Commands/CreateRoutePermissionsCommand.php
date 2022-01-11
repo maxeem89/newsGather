@@ -38,13 +38,25 @@ class CreateRoutePermissionsCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
     public function handle()
     {
-        $products= Products::where('items.$.avQuantity', '=', 0)->get();
-        foreach ($products as $product){
-            $product->update(['status'=> INACTIVE]);
-            Log::info("product status changed". $product->_id );
+        $routes = Route::getRoutes()->getRoutes();
+
+        foreach ($routes as $route) {
+            if ($route->getName() != '' && $route->getAction()['middleware']['0'] == 'web') {
+                $permission = Permission::where('name', $route->getName())->first();
+
+                if (is_null($permission)) {
+                    permission::create(['name' => $route->getName()]);
+                }
+            }
         }
 
+        $this->info('Permission routes added successfully.');
     }
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
             display: flex;
@@ -10,9 +10,10 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Jost', sans-serif;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(to bottom, #424B5C, #A6AEBB, #ffffff);
         }
-        .main{
+
+        .main {
             width: 350px;
             height: 500px;
             background: red;
@@ -21,15 +22,18 @@
             border-radius: 10px;
             box-shadow: 5px 20px 50px #000;
         }
-        #chk{
+
+        #chk {
             display: none;
         }
-        .signup{
+
+        .signup {
             position: relative;
-            width:100%;
+            width: 100%;
             height: 100%;
         }
-        label{
+
+        label {
             color: #fff;
             font-size: 2.3em;
             justify-content: center;
@@ -39,7 +43,8 @@
             cursor: pointer;
             transition: .5s ease-in-out;
         }
-        input{
+
+        input {
             width: 60%;
             height: 20px;
             background: #e0dede;
@@ -51,14 +56,15 @@
             outline: none;
             border-radius: 5px;
         }
-        button{
+
+        button {
             width: 60%;
             height: 40px;
             margin: 10px auto;
             justify-content: center;
             display: block;
             color: #fff;
-            background: #573b8a;
+            background: #424B5C;
             font-size: 1em;
             font-weight: bold;
             margin-top: 20px;
@@ -68,28 +74,33 @@
             transition: .2s ease-in;
             cursor: pointer;
         }
-        button:hover{
-            background: #6d44b8;
+
+        button:hover {
+            background: #909baf;
         }
-        .login{
+
+        .login {
             height: 460px;
             background: #eee;
             border-radius: 60% / 10%;
             transform: translateY(-180px);
             transition: .8s ease-in-out;
         }
-        .login label{
-            color: #573b8a;
+
+        .login label {
+            color: #A6AEBB;
             transform: scale(.6);
         }
 
-        #chk:checked ~ .login{
+        #chk:checked ~ .login {
             transform: translateY(-500px);
         }
-        #chk:checked ~ .login label{
+
+        #chk:checked ~ .login label {
             transform: scale(1);
         }
-        #chk:checked ~ .signup label{
+
+        #chk:checked ~ .signup label {
             transform: scale(.6);
         }
 
@@ -105,7 +116,6 @@
     <div class="signup">
         <form>
             <label for="chk" aria-hidden="true">Sign up</label>
-            <input type="text" name="txt" placeholder="User name" required="">
             <input type="email" name="email" placeholder="Email" required="">
             <input type="password" name="pswd" placeholder="Password" required="">
             <button>Sign up</button>

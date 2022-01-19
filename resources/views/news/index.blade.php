@@ -1,40 +1,6 @@
 @extends('layouts.app-master')
 
-<style>
 
-    /* CSS */
-    .button-1 {
-        background-color: #74b1da;
-        border-radius: 8px;
-        border-style: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        height: 40px;
-        line-height: 20px;
-        list-style: none;
-        margin: 0;
-        outline: none;
-        padding: 10px 16px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: color 100ms;
-        vertical-align: baseline;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
-
-    .button-1:hover,
-    .button-1:focus {
-        background-color: #6745a6;
-    }
-</style>
 @section('content')
 
     <div class="bg-light p-4 rounded">
@@ -42,7 +8,7 @@
         </h1>
         <form action="" method="GET">
             <input  value="{{optional($request)->search}}" autocomplete="off" type="text" name="search" required/>
-            <button class="button-1" type="submit">Search</button>
+            <button class="btn btn-primary btn-sm float-lg-left" type="submit">Search</button>
         </form>
         <div class="lead">
             <a href="{{ route('news.create') }}" class="btn btn-primary btn-sm float-right">Add new News</a>
@@ -67,6 +33,7 @@
 
             @foreach($items as $key => $item)
                 <tr>
+
                     <td>{{$item['id']}}</td>
                     <td>{{$item->category->resources->name}}</td>
                     <td>{{$item->category->name}}</td>

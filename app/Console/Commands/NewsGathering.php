@@ -73,8 +73,10 @@ class NewsGathering extends Command
                         $bodyText = '<div class="row">';
                         if($resource->has_full_links == 0) {
                             $html_news = file_get_html($resource['link'] . $this->str_replace_first('/', '', $element));
+
                         }else {
                             $html_news = file_get_html($element);
+
                         }
                         foreach ($html_news->find($category['target_news_title']) as $title) {
                             $titleText = $title->text();

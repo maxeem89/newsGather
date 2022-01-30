@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use jcobhams\NewsApi\NewsApi;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        if(Auth::user()->roles[0]->name == env("ROLE_READER")){
+            return redirect(route('out.home'));
+        }
 
         return view('home');
     }

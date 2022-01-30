@@ -20,6 +20,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Web'], function () {
      */
 
     Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/home', 'HomeController@index')->name('home.index');
 
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
@@ -46,3 +47,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Web'], function () {
     });
 
 });
+Route::group(['namespace' => 'App\Http\Controllers\Api', 'prefix' => 'out', 'middleware' => ['auth']], function (){
+    Route::get("setting", "NewsController@showCustomList")->name('out.setting');
+    Route::post("storeSetting", "NewsController@storeCustomList")->name('out.storeSetting');
+    Route::get("login", "NewsController@login")->name('login.out');
+    Route::get("news", "NewsController@showNewsList")->name('out.home');
+    Route::get("resources/{resource}", "NewsController@showResourcesList")->name('resources.show.out');
+    Route::get("categories/{category}", "NewsController@showCategoryList")->name('categories.show.out');
+});
+

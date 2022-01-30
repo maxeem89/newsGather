@@ -91,4 +91,15 @@ class LoginController extends Controller
     {
         return 'email';
     }
+
+    public function logout(Request $request)
+    {
+        $role = auth()->user()->roles[0]['name'];
+        $this->guard()->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        if($role == env("ROLE_READER"))
+            return redirect(route('out.home'));
+        else return redirect('/');
+    }
 }

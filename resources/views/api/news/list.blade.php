@@ -43,7 +43,6 @@
     </style>
     <div class=" p-4 rounded"
          style="padding-top: 0px !important; padding-bottom: 0px !important; background: transparent;">
-
         @foreach($resources as $resource)
             @if(count($resource->categories))
                 <div class="row">
@@ -51,6 +50,7 @@
                     @php
                         $var=0;
                     @endphp
+
                     @foreach($resource->categories as $category)
                         <div class="category-title ">
                             <h2 style="direction: @if($resource->lng == 'en') ltr;  @else rtl @endif"><a
@@ -64,7 +64,7 @@
                                 </h4>
                                 <p style="direction: @if($resource->lng == 'en') ltr @else rtl @endif;"> {!! substr(strip_tags($news->body), 0, 50) !!}
                                     ... </p>
-                                <h6 style="direction: @if($resource->lng == 'en') rtl @else ltr @endif">{{$resource->name}}</h6>
+                                <h6 style="direction: @if($resource->lng == 'en') rtl  @else ltr @endif  " >{{$resource->name}} <span  class="badge bg-primary">{{$news->created_at}}</span></h6>
                             </div>
                             @php
                                 $var++;

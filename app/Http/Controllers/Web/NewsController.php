@@ -25,9 +25,10 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $items = News::where(function ($query) use($request){
-            $query->where('title', 'LIKE', "%{$request->search}%");
+            if($request->search != '') {
+                $query->where('title', 'LIKE', "%{$request->search}%");
+            }
         })->orderBy('created_at', 'desc')->orderBy('id', 'desc')->paginate(10);
-
         return view("news.index", compact('items', 'request'));
     }
 

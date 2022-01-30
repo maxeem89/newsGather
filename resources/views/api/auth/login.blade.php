@@ -105,7 +105,7 @@
         }
 
     </style>
-    <title>Slide Navbar</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="slide navbar style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
@@ -114,22 +114,38 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup">
-        <form>
-            <label for="chk" aria-hidden="true">Sign up</label>
+        <form method="POST" action="{{route('register')}}">
+            @csrf
+            <label for="chk" aria-hidden="true" style="margin-bottom: 5px;">Sign up</label>
+            <input type="text" name="name" placeholder="Name" required="">
             <input type="email" name="email" placeholder="Email" required="">
-            <input type="password" name="pswd" placeholder="Password" required="">
+            <input type="password" name="password" placeholder="Password" required="">
+            <input type="password" name="password_confirmation" placeholder="Confirmation Password" required="">
             <button>Sign up</button>
         </form>
     </div>
 
     <div class="login">
-        <form>
-            <label for="chk" aria-hidden="true">Login</label>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <label class="login-tab" for="chk" aria-hidden="true">Login</label>
             <input type="email" name="email" placeholder="Email" required="">
-            <input type="password" name="pswd" placeholder="Password" required="">
+            <input type="password" name="password" placeholder="Password" required="">
             <button>Login</button>
         </form>
     </div>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    window.onload = function() {
+        setTimeout( function(){
+            var type = window.location.hash.substr(1);
+            if(type == "login"){
+                $(".login-tab").trigger( "click" );
+            }
+        }  , 200 );
+
+    };
+</script>
 </html>

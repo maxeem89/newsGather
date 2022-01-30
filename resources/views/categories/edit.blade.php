@@ -35,7 +35,6 @@
                        name="sub_link"
                        placeholder="Sub_Link" required>
                 @if ($errors->has('sub_link'))
-
                     <span class="text-danger text-left">{{ $errors->first('sub_link') }}</span>
                 @endif
             </div>

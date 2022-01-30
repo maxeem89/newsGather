@@ -9,7 +9,7 @@
 
         <div>
 
-            <form method="POST" action="   {{ route('resources.store') }}">
+            <form method="POST" action=" {{ route('resources.store') }}">
 
                 @csrf
                 <div class="mb-3">
@@ -65,11 +65,12 @@
                         <span class="text-danger text-left">{{ $errors->first('lng') }}</span>
                     @endif
                 </div>
-
                 <button type="submit" class="btn btn-primary">Save Resources</button>
                 <a href="{{ route('resources.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
 
     </div>
+
 @endsection
+

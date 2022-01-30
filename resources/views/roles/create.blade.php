@@ -7,7 +7,7 @@
             Add new role and assign permissions.
         </div>
 
-        <div class="container mt-4">
+        <div class="">
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -64,7 +64,7 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $(document).ready(func      ction() {
+        $(document).ready(function() {
             $('[name="all_permission"]').on('click', function() {
 
                 if($(this).is(':checked')) {

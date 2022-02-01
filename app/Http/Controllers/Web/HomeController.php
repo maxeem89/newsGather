@@ -30,7 +30,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::user()->roles[0]->name == env("ROLE_READER")){
+
+        if(!isset(Auth::user()->roles[0]) || Auth::user()->roles[0]->name == env("ROLE_READER")){
             return redirect(route('out.home'));
         }
 

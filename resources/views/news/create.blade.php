@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <div class="bg-light p-4 rounded">
+    <div class="">
         <h2>Add new news</h2>
         <div class="lead">
             Add new News.

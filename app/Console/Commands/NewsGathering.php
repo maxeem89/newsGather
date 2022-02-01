@@ -68,6 +68,7 @@ class NewsGathering extends Command
                             $tempLinks[] = $element->href;
                         }
                     }
+
                     foreach ($tempLinks as $element) {
                         $titleText = '0';
                         $bodyText = '<div class="row">';

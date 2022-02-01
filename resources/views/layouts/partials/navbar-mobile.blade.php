@@ -85,9 +85,11 @@
             @else
                 <form id="formout"  id="logout-form" action="{{ route('logout') }}" method="POST" class="float-md-end">
                     @csrf
+                    @auth
+                        <span class="text-info">{{auth()->user()->name}}&nbsp;&nbsp;({{ isset(auth()->user()->roles[0]['name']) ? auth()->user()->roles[0]['name'] : "Unknown"}})&nbsp;</span>
                     <button form="formout" type="submit" class="btn text-white float-md-end" style=" margin: 2px ;background-color: #c5d7f2">Logout</button>
                 </form>
-
+            @endauth
             @endguest
         </div>
     </div>

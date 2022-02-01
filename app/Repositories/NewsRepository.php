@@ -14,7 +14,7 @@ class NewsRepository
 
     function ValidateExist($request) : bool
     {
-        return (bool)News::title($request['title'])->pathUrl($request['url'])->first();;
+        return (bool)News::title($request['title'])->pathUrl($request['url'])->first();
     }
     function ValidateApiExist($request)
     {

@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Attempting;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class LoginController extends Controller
 {
@@ -39,7 +40,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+      $this->middleware('guest')->except('logout');
     }
 
     protected function validateLogin(Request $request)
@@ -60,7 +61,6 @@ class LoginController extends Controller
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-
             return $this->sendLockoutResponse($request);
         }
 
@@ -80,6 +80,7 @@ class LoginController extends Controller
 
     protected function fireAttemptEvent(array $credentials, $remember = false)
     {
+
         if (isset($this->events)) {
             $this->events->dispatch(new Attempting(
                 $this->name, $credentials, $remember
@@ -89,16 +90,18 @@ class LoginController extends Controller
 
     public function username()
     {
+
         return 'email';
     }
 
     public function logout(Request $request)
     {
-        $role = auth()->user()->roles[0]['name'];
+        $role = isset(auth()->user()->roles[0]['name']) ? auth()->user()->roles[0]['name'] : '';
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        if($role == env("ROLE_READER"))
+
+        if ($role == env("ROLE_READER") || $role==env("Unknown"))
             return redirect(route('out.home'));
         else return redirect('/');
     }
